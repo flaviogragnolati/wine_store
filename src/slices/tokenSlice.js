@@ -1,9 +1,8 @@
-import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { status } from '../constants/helpers';
 import { refreshEndpoint } from '../constants/endpoints.js';
-import tokenManager from '../Components/utils/tokenManager';
 
 const initialState_token = {
   tryToLoginStatus: status.idle,
@@ -18,7 +17,7 @@ const initialState_token = {
   error: null,
 };
 
-//!NO OLVIDARSE DE PONER EN APP
+//!NO OLVIDARSE DE PONER EN APP VIVO
 // window.addEventListener('storage', (event) => {
 //   if (event.key === initialState_token.logoutEventName) {
 //     removeToken();
@@ -85,7 +84,6 @@ const delayRefresh = (delay) => {
 export const setRefreshTokenTimeout = createAsyncThunk(
   'token/refreshTimeout',
   async (payload, { dispatch, getState }) => {
-    const state = getState();
     // let delay = state.token.delay;
     let delay = 1000000;
     return await delayRefresh(delay);
@@ -132,7 +130,7 @@ const tokenSlice = createSlice({
       state.refreshStatus = status.loading;
     },
     [getRefreshedToken.fulfilled]: (state, { payload }) => {
-      const { newToken, user } = payload;
+      const { newToken } = payload;
       state.refreshStatus = status.succeded;
       state.inMemoryToken = newToken.token;
       state.delay = newToken.expires - state.refreshTimeDelta;

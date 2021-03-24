@@ -17,11 +17,8 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { userSelector, userStatusSelector } from '../../selectors/index.js';
-import axios from 'axios';
-import tokenManager from '../utils/tokenManager';
 import { userLogout } from '../../slices/userSlice.js';
-import { logout, getAllProductsCart } from '../../slices/productsCartSlice';
-import { useAuthContext, useAuthProvider } from '../ProtectRoute/authContext';
+import { useAuthContext } from '../ProtectRoute/authContext';
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -29,6 +26,7 @@ function NavBar() {
   const authStatus = useAuthContext();
   const user = useSelector(userSelector);
   const status = useSelector(userStatusSelector);
+  // eslint-disable-next-line no-unused-vars
   const [logged, setLogin] = useState(false);
 
   const [open, setOpen] = useState(false);
@@ -66,6 +64,8 @@ function NavBar() {
       anchorRef.current.focus();
     }
     prevOpen.current = open;
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, open]);
 
   return (

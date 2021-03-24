@@ -21,7 +21,7 @@ import {
   resetStatus,
 } from '../../../slices/userSlice.js';
 //import { postProductToCart, login } from '../../../slices/productsCartSlice.js';
-import { userSelector, userLoginStatusSelector } from '../../../selectors';
+import { userLoginStatusSelector } from '../../../selectors';
 //import axios from 'axios';
 
 function UserLogin() {

@@ -1,24 +1,22 @@
 import React, { useEffect } from 'react';
-import { Paper, Container } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import './AdminPanel.modules.css';
-import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import AdminStrain from './LoadCategory/AdminStrain';
 import AdminCategory from './LoadCategory/AdminCategory';
 import AdminProduct from './LoadProduct/AdminProduct';
 import PromoteUser from './PromoteUser/PromoteUser';
-import { useDispatch, useSelector } from 'react-redux';
-import { userSelector, userStatusSelector } from '../../selectors/index';
+import { useDispatch } from 'react-redux';
 import { allUsers } from '../../slices/userSlice';
 import EditUser from './EditUser/EditUser';
 
 const AdminPanel = () => {
   const dispatch = useDispatch();
-  const user = useSelector(userSelector);
   //const userStatus = useSelector(userStatusSelector);
 
   useEffect(() => {
     dispatch(allUsers());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

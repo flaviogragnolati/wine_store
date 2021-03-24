@@ -57,7 +57,6 @@ function ProductDetail(props) {
   const detailStatus = useSelector(productDetailStatusSelector);
   const cartStatus = useSelector(allProductsCartStatusSelector);
   const productDetail = useSelector(productDetailSelector);
-  const statusProductDetail = useSelector(productDetailStatusSelector);
   const reviews = useSelector(reviewsListSelector);
   const reviewStatus = useSelector(reviewsListStatusSelector);
   const history = useHistory();
@@ -93,6 +92,7 @@ function ProductDetail(props) {
       let rs = average(reviews);
       setValue(rs);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reviewStatus]);
 
   useEffect(() => {
@@ -102,6 +102,7 @@ function ProductDetail(props) {
       dispatch(setWineDetailAsync(urlId));
       // history.push('/catalogue');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //* EDITHANDLER, redirect a form para editar producto

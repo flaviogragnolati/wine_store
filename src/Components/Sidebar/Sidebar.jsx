@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Sidebar.modules.css';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,7 +11,9 @@ import {
 import {
   getAllCategories,
   getAllProdsByCategory,
-  productPriceLessCategory, productPriceBetweenCategory, productPriceMoreCategory
+  productPriceLessCategory,
+  productPriceBetweenCategory,
+  productPriceMoreCategory,
 } from '../../slices/categorySlice';
 import {
   allProductsSelector,
@@ -38,42 +40,36 @@ function Sidebar(props) {
   };
 
   const priceLessHandler = (e, f, g) => {
-    if(!props.taste) {
-
-      props.pagina(1)
+    if (!props.taste) {
+      props.pagina(1);
       dispatch(getAllProducts()).then(() => {
-        dispatch(productPriceLess(e))
+        dispatch(productPriceLess(e));
       });
-    }else{
-
-      dispatch(productPriceLessCategory(e))
-      props.pagina(1)
-
+    } else {
+      dispatch(productPriceLessCategory(e));
+      props.pagina(1);
     }
   };
   const priceBetweenHandler = (e, f, g) => {
-    if(!props.taste){
-
+    if (!props.taste) {
       props.pagina(1);
       dispatch(getAllProducts()).then(() => {
         dispatch(productPriceBetween({ e, f }));
-      })
-    }else{
+      });
+    } else {
       props.pagina(1);
       dispatch(productPriceBetweenCategory({ e, f }));
     }
   };
   const priceMoreHandler = (e) => {
-    if(!props.taste){
-
+    if (!props.taste) {
       props.pagina(1);
       dispatch(getAllProducts()).then(() => {
         dispatch(productPriceMore(e));
       });
-    }else{
+    } else {
       props.pagina(1);
-      dispatch(productPriceMoreCategory( e));
-
+      dispatch(productPriceMoreCategory(e));
     }
   };
 

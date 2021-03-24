@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { create } from 'yup/lib/Reference';
-import tokenManager from '../Components/utils/tokenManager';
 import { getOrderTableEndpoint, productEndpoint } from '../constants/endpoints';
 import { status } from '../constants/helpers';
 import { sendEmail } from './userSlice';
@@ -31,8 +29,9 @@ export const getOrderTable = createAsyncThunk(
 export const modificateOrder = createAsyncThunk(
   'cart/modificateOrder',
   async (payload, { dispatch, getState }) => {
-    const { myCart, total, status } = payload;
+    const { myCart, status } = payload;
     const state = getState();
+    // eslint-disable-next-line no-unused-vars
     const modificatedOrder = await axios.put(
       getOrderTableEndpoint + myCart,
       payload
@@ -56,7 +55,7 @@ export const confirmOrder = createAsyncThunk(
   'cart/confirmOrder',
   async (payload, { dispatch }) => {
     const { order_payload, cart_payload } = payload;
-    const { myCart, total, status } = order_payload;
+    const { myCart } = order_payload;
 
     const modifyOrder_response = await axios.put(
       getOrderTableEndpoint + myCart,

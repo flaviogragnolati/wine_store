@@ -22,7 +22,7 @@ function Products() {
   const products = useSelector(allProductsSelector);
   const status = useSelector(allProductsStatusSelector);
 
-  const [value, setValue] = useState(0); // Rating traer promedio de calificación de base de datos según producto
+  // const [value, setValue] = useState(0); // Rating traer promedio de calificación de base de datos según producto
   const [page, setPage] = useState(1);
   const cantidadAMostrar = 5;
   function handleClick(e, num) {
@@ -58,27 +58,38 @@ function Products() {
       </>
     );
   } else if (status === 'succeded') {
-    content = products.slice((page - 1) * cantidadAMostrar, page * cantidadAMostrar).map((product, idx) => {
-      let even = idx % 2 === 0 ? 'white' : 'beige';
-      return (
-        <>
-          <div className="grid-item" style={{ backgroundColor: even }}>
-            {product.id}
-          </div>
-          <div className="grid-item" style={{ backgroundColor: even }}>
-            {product.name}
-          </div>
-          <Button
-            className="editButton"
-            style={{ backgroundColor: even }}
-            onClick={() => editHandler(product.id)}
-          >
-            <EditIcon className="grid-item"></EditIcon>
-          </Button>
-        </>
-      );
-    });
-    content.push(<div className="Catalogue__Pagination"><Pagination onChange={handleClick} count={Math.ceil(products.length / cantidadAMostrar)} variant="outlined" shape="rounded" /></div>);
+    content = products
+      .slice((page - 1) * cantidadAMostrar, page * cantidadAMostrar)
+      .map((product, idx) => {
+        let even = idx % 2 === 0 ? 'white' : 'beige';
+        return (
+          <>
+            <div className="grid-item" style={{ backgroundColor: even }}>
+              {product.id}
+            </div>
+            <div className="grid-item" style={{ backgroundColor: even }}>
+              {product.name}
+            </div>
+            <Button
+              className="editButton"
+              style={{ backgroundColor: even }}
+              onClick={() => editHandler(product.id)}
+            >
+              <EditIcon className="grid-item"></EditIcon>
+            </Button>
+          </>
+        );
+      });
+    content.push(
+      <div className="Catalogue__Pagination">
+        <Pagination
+          onChange={handleClick}
+          count={Math.ceil(products.length / cantidadAMostrar)}
+          variant="outlined"
+          shape="rounded"
+        />
+      </div>
+    );
   } else if (status === 'failed') {
     content = (
       <>
@@ -89,30 +100,33 @@ function Products() {
   }
   return (
     <div>
-      <Button id="btnCargar" onClick={() =>
- 
-        history.push({
-          pathname: '/dashboard/loadproduct',
-          state: {
-            edit: false,
-          }
-        })
-      }
-      > CARGAR PRODUCTO </Button>
+      <Button
+        id="btnCargar"
+        onClick={() =>
+          history.push({
+            pathname: '/dashboard/loadproduct',
+            state: {
+              edit: false,
+            },
+          })
+        }
+      >
+        {' '}
+        CARGAR PRODUCTO{' '}
+      </Button>
 
       <div class="grid-container">
-
         <p className="grid-item" style={{ fontWeight: 'bold' }}>
           Código
-      </p>
+        </p>
         <p className="grid-item" style={{ fontWeight: 'bold' }}>
           Producto
-      </p>
+        </p>
         <p className="grid-item" style={{ fontWeight: 'bold' }}>
           Editar/Borrar
-      </p>
+        </p>
         {content}
-      </div >
+      </div>
     </div>
   );
 }

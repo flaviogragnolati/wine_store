@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Button, Container } from '@material-ui/core';
 import { userSelector } from '../../../selectors';
@@ -7,7 +8,7 @@ import { useAuthContext } from '../../ProtectRoute/authContext';
 function CartItem(props) {
   const authStatus = useAuthContext();
   const user = useSelector(userSelector);
-  const { id, image, name, price, quantity, stock } = props.prod;
+  const { id, image, name, price, quantity } = props.prod;
   const {
     deleteItemHandler,
     incrementHandler,

@@ -14,7 +14,6 @@ import { functionCartGuest } from '../../Components/utils/index.js';
 import {
   allProductsCartStatusSelector,
   userSelector,
-  usersListSelector,
 } from '../../selectors/index';
 import { useAuthContext } from '../ProtectRoute/authContext';
 

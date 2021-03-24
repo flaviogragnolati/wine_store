@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
@@ -61,6 +62,7 @@ function Usuarios() {
 
   useEffect(() => {
     if (status === 'idle') dispatch(allUsers());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, users]);
 
   if (status === 'loading') {

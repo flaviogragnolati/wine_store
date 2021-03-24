@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-import {
-  myCartSelector,
-  allProductsCartSelector,
-  userSelector,
-} from '../../selectors';
+import { allProductsCartSelector, userSelector } from '../../selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { total } from '../utils/index';
 import { getAllProductsCart } from '../../slices/productsCartSlice';
@@ -33,25 +28,6 @@ export default function Review() {
 
   const user = useSelector(userSelector);
   const dispatch = useDispatch();
-  let addressInfoStorage = JSON.parse(localStorage.getItem('addressInfo'));
-  const [addressInfo, setAddressInfo] = React.useState({
-    firstName: addressInfoStorage.firstName,
-    lastName: addressInfoStorage.lastName,
-    address1: addressInfoStorage.address1,
-    email: addressInfoStorage.email,
-    city: addressInfoStorage.city,
-    stateAddress: addressInfoStorage.stateAddress,
-    zip: addressInfoStorage.zip,
-    country: addressInfoStorage.country,
-  });
-
-  let paymentInfoStorage = JSON.parse(localStorage.getItem('paymentInfo'));
-  const [paymentInfo, setPaymentInfo] = React.useState({
-    cardName: paymentInfoStorage.cardName,
-    cardNumber: paymentInfoStorage.cardNumber,
-    expDate: paymentInfoStorage.expDate,
-    cvv: paymentInfoStorage.cvv,
-  });
 
   const payments = [
     //Info del formulario anterior
@@ -62,11 +38,10 @@ export default function Review() {
 
   const classes = reviewStyles();
   const AllProductsCart = useSelector(allProductsCartSelector);
-  const myCart = useSelector(myCartSelector);
-  const [subTotal, setSubTotal] = useState(0);
 
   useEffect(() => {
     dispatch(getAllProductsCart(user.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -108,7 +83,7 @@ export default function Review() {
           <Typography gutterBottom>{firstName + ' ' + lastName}</Typography>
           <Typography gutterBottom>{email}</Typography>
           <Typography gutterBottom>
-            {address + ' ' + ', ' + city + ', ' + country + '. CP: ' + zip}
+            {address + ', ' + ', ' + city + ', ' + country + '. CP: ' + zip}
           </Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>

@@ -9,16 +9,13 @@ import {
   allProductsCartSyncSelector,
   allProductsCartStatusSelector,
   allOrderStatusSelector,
-  userStatusSelector,
   userSelector,
-  myCartSelector,
 } from '../../selectors';
 import {
   getAllProductsCart,
   sync,
   cartGuest,
   postProductToCart,
-  modificateOrder,
   deleteAllProductsFromCart,
   deleteSingleProdFromCart,
   resetState,
@@ -26,12 +23,10 @@ import {
 import CartItem from './CartItem/CartItem';
 import {
   total,
-  isLogged,
   functionCartGuest,
   deleteAddressInfo,
   deletePaymentInfo,
 } from '../../Components/utils/index.js';
-import axios from 'axios';
 import { useAuthContext } from '../ProtectRoute/authContext';
 
 function Cart() {
@@ -41,8 +36,6 @@ function Cart() {
   const sincronizar = useSelector(allProductsCartSyncSelector);
   const cartStatus = useSelector(allProductsCartStatusSelector);
   const user = useSelector(userSelector);
-  const myCart = useSelector(myCartSelector);
-  const statusUser = useSelector(userStatusSelector);
   const statusOrder = useSelector(allOrderStatusSelector);
   const [subTotal, setSubTotal] = useState(0);
   // const [login, setLogin] = useState(false);
@@ -174,9 +167,10 @@ function Cart() {
 
   const handleConfirm = () => {
     if (authStatus) {
+      // eslint-disable-next-line no-unused-vars
       let total = Math.ceil((subTotal * 121) / 100);
-        //history.push('/checkout');
-        history.push('/payments');
+      //history.push('/checkout');
+      history.push('/payments');
     }
     if (!authStatus) {
       history.push('/form/user/login');
@@ -217,10 +211,12 @@ function Cart() {
       }
       setSubTotal(total(AllProductsCart));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authStatus, sincronizar, user]);
 
   useEffect(() => {
     setSubTotal(total(AllProductsCart));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartStatus, dispatch]);
 
   let content;

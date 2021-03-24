@@ -1,14 +1,9 @@
 import React, { useEffect } from 'react';
-import {
-  tokenSelector,
-  tryToLoginStatusSelector,
-  refreshStatusSelector,
-} from '../../selectors';
-import { AuthContext, useAuthProvider } from './authContext';
+import { tryToLoginStatusSelector } from '../../selectors';
+import { AuthContext } from './authContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRefreshedToken, tryToLogin } from '../../slices/tokenSlice';
+import { tryToLogin } from '../../slices/tokenSlice';
 import { Container, CircularProgress } from '@material-ui/core';
-import { useState } from 'react';
 import { userLoginStatusSelector } from '../../selectors/index';
 
 function AuthProvider({ children }) {
@@ -24,6 +19,7 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     isLogged();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tryToLoginStatus, dispatch]);
 
   if (tryToLoginStatus === 'loading' || userStatus === 'loading') {

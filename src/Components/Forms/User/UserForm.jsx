@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import {
   Button,
   Container,
@@ -8,7 +8,6 @@ import {
 } from '@material-ui/core';
 import FormField from '../../FormComponents/FormField';
 import './UserForm.modules.css';
-import { validationSchemaUserRegister } from './userValidations';
 import { useDispatch, useSelector } from 'react-redux';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { createUser, sendEmail } from '../../../slices/userSlice';
@@ -65,6 +64,7 @@ function UserForm() {
     if (status === 'failed') {
       error.message.includes('409') ? emailTaken() : history.push('/failure');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   const handleReset = (formik) => {
@@ -153,7 +153,6 @@ function UserForm() {
                 name="confirmPassword"
                 required
                 className="text__field UserForm__lb"
-                type="password"
                 type={viewPassword ? 'text' : 'password'}
               />
               <br></br>

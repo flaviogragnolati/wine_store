@@ -16,7 +16,7 @@ import UserForm from './Components/Forms/User/UserForm';
 import UserLogin from './Components/Forms/User/UserLogin';
 import axios from 'axios';
 import ProtectRoute from './Components/ProtectRoute/ProtectRoute';
-import { isLogged, isAdmin } from './Components/utils/index';
+import { isLogged } from './Components/utils/index';
 import tokenManager from './Components/utils/tokenManager';
 import Notifier from './Components/Notifier/Notifier';
 import AuthProvider from './Components/ProtectRoute/AuthProvider';
@@ -63,7 +63,7 @@ function App() {
           <ProtectRoute path="/user/profile" component={Profile} />
           <Route path="/404" component={notFound} />
           <Route path="/checkout" component={Checkout} />
-          <Route exact path="/dashboard/loadproduct" component={AdminProduct}/>
+          <Route exact path="/dashboard/loadproduct" component={AdminProduct} />
           <Redirect to="/404" />
         </Switch>
       </AuthProvider>

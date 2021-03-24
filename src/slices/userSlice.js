@@ -74,7 +74,6 @@ export const githubLogin = createAsyncThunk(
     let redirectURL = resp.request.responseURL;
     if (redirectURL) return window.location.replace(redirectURL);
     else return rejectWithValue(resp);
-    return resp;
   }
 );
 export const googleLogin = createAsyncThunk(
@@ -84,7 +83,6 @@ export const googleLogin = createAsyncThunk(
     let redirectURL = resp.request.responseURL;
     if (redirectURL) return window.location.replace(redirectURL);
     else return rejectWithValue(resp);
-    return resp;
   }
 );
 

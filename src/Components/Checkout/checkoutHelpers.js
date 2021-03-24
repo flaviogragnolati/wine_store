@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core';
 import * as Yup from 'yup';
-import { validationSchema } from '../FormComponents/validations';
 
 export const checkoutStyles = makeStyles((theme) => ({
   layout: {
@@ -176,17 +175,23 @@ export const checkoutValidationSchema = [
       .required(`${country.requiredErrorMsg}`),
   }),
   Yup.object().shape({
-    [cardName.name]: Yup.string().required(`${cardName.requiredErrorMsg}`)
-    .matches(/^[a-z ,.'-]+$/i, cardName.invalidErrorMsg),
+    [cardName.name]: Yup.string()
+      .required(`${cardName.requiredErrorMsg}`)
+      .matches(/^[a-z ,.'-]+$/i, cardName.invalidErrorMsg),
     // .test(/^[a-z ,.'-]+$/i),
-    [cardNumber.name]: Yup.string().required(`${cardNumber.requiredErrorMsg}`)
-    .test('len', `${cardNumber.invalidErrorMsg}`, (val) => val && val.length === 16),
-      // .matches(visaRegEx, cardNumber.invalidErrorMsg),
+    [cardNumber.name]: Yup.string()
+      .required(`${cardNumber.requiredErrorMsg}`)
+      .test(
+        'len',
+        `${cardNumber.invalidErrorMsg}`,
+        (val) => val && val.length === 16
+      ),
+    // .matches(visaRegEx, cardNumber.invalidErrorMsg),
     [expiryDate.name]: Yup.string()
       .nullable()
       .required(`${expiryDate.requiredErrorMsg}`)
       .matches(/^\d{2}\/\d{2}$/g, expiryDate.invalidErrorMsg),
-      
+
     //   .test('expDate', expiryDate.invalidErrorMsg, (val) => {
     //     if (val) {
     //       const startDate = new Date();

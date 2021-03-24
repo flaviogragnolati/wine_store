@@ -1,10 +1,6 @@
+/* eslint-disable no-unused-vars */
 import store from '../../store';
-import {
-  setToken,
-  eraseToken,
-  getRefreshedToken,
-  setRefreshTimeout,
-} from '../../slices/tokenSlice';
+import { eraseToken, getRefreshedToken } from '../../slices/tokenSlice';
 
 const tokenManager = () => {
   const dispatch = store.dispatch;

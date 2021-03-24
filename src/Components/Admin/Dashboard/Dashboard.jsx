@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
   Container,
@@ -15,8 +13,6 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
-import { userSelector, allProductsSelector } from '../../../selectors/index';
-import { useDispatch, useSelector } from 'react-redux';
 import Usuarios from './Usuarios';
 import Logo from './Logo';
 import OrderTable from '../../OrderTable/OrderTable';
@@ -25,7 +21,6 @@ import AdminCategory from '../LoadCategory/AdminCategory';
 import AdminProduct from './Products';
 import './Dashboard.modules.css';
 
-import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -44,18 +39,8 @@ function Copyright() {
   );
 }
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  display: 'flex',
-}));
-
 export default function Dashboard() {
-  const classes = useStyles();
   const [menu, setMenu] = useState(0);
-  const dispatch = useDispatch();
-  const user = useSelector(userSelector);
-  const products = useSelector(allProductsSelector);
 
   const [state, setState] = useState({
     dispatched: true,
@@ -71,8 +56,6 @@ export default function Dashboard() {
     setMenu(parseInt(e.target.value));
     return;
   };
-
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   function getMenu(menu) {
     switch (menu) {
@@ -94,10 +77,8 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
-    {
-      getMenu(menu);
-    }
-  }, [menu]);
+    getMenu(menu);
+  }, [getMenu, menu]);
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });

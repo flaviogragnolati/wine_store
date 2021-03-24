@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import { checkoutFields } from './checkoutHelpers';
-import InputField from '../FormComponents/FieldComponents/InputField';
-import { useState, Component } from 'react';
 import { TextField } from 'formik-material-ui';
 import { Field } from 'formik';
 

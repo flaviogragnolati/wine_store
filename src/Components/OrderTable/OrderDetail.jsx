@@ -1,15 +1,11 @@
-import React, { useEffect } from 'react';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './OrderDetail.modules.css';
 import UserReview from '../Review/UserReview';
-import {
-  reviewsListSelector,
-  userSelector,
-  allProductsCartStatusSelector,
-} from '../../selectors/index.js';
+import { reviewsListSelector, userSelector } from '../../selectors/index.js';
 import { deleteSingleProdFromCart } from '../../slices/productsCartSlice';
 import { search } from '../utils/index';
-import { Button, Link } from '@material-ui/core';
 
 function OrderDetail(props) {
   // props va a ser un arreglo con todas las orderLines

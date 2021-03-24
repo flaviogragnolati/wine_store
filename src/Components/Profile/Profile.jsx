@@ -55,6 +55,7 @@ export default function Profile() {
   useEffect(() => {
     dispatch(getUserOrders(user.id));
     dispatch(getUserReviews(user.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, state]);
 
   const editValues = {

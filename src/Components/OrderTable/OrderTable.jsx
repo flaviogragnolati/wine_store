@@ -32,7 +32,7 @@ function OrderTable(props) {
     'finished',
     'canceled',
   ];
-  const [value, setValue] = useState(0); // Rating traer promedio de calificación de base de datos según producto
+  // const [value, setValue] = useState(0); // Rating traer promedio de calificación de base de datos según producto
   const [page, setPage] = useState(1);
   const cantidadAMostrar = 4;
   function handleClickPagination(e, num) {

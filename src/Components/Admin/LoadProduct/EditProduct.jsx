@@ -13,7 +13,6 @@ import {
 import FormField from '../../FormComponents/FormField';
 import { validationSchemaLoadProducts } from '../adminValidations';
 import { deleteProduct, updateProduct } from '../../../slices/productSlice';
-import userSlice from '../../../slices/userSlice';
 
 function EditProduct(props) {
   const { strainOption, tasteOption } = props.options; //opciones para los dropdown

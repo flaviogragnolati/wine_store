@@ -26,6 +26,7 @@ export default function AddressForm() {
 
   let addressInfoStorage = JSON.parse(localStorage.getItem('addressInfo'));
 
+  // eslint-disable-next-line no-unused-vars
   const [addressInfo, setAddressInfo] = useState({
     firstName: addressInfoStorage.firstName,
     lastName: addressInfoStorage.lastName,

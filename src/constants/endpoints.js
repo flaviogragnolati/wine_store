@@ -1,4 +1,4 @@
-const baseEndpoint = 'https://wine-store-api.herokuapp.com/';
+const baseEndpoint = 'http://localhost:3000/';
 
 export const productEndpoint = baseEndpoint + `products/`;
 

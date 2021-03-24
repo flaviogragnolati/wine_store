@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import {
   Paper,
   Stepper,
   Step,
-  makeStyles,
   StepLabel,
   Button,
   Typography,
@@ -20,29 +20,16 @@ import {
   myCartSelector,
   allOrderStatusSelector,
 } from '../../selectors/index';
-import {
-  //modificateOrder,
-  resetCart,
-  postProductToCart,
-} from '../../slices/productsCartSlice';
-import {
-  modificateOrder,
-  confirmOrder,
-  resetOrderstatus,
-} from '../../slices/orderTableSlice';
-import {
-  deleteAddressInfo,
-  deletePaymentInfo,
-} from '../../Components/utils/index';
+import { resetCart } from '../../slices/productsCartSlice';
+import { confirmOrder, resetOrderstatus } from '../../slices/orderTableSlice';
 import { sendEmail } from '../../slices/userSlice';
 import { total } from '../utils/index';
-import axios from 'axios';
 import {
   checkoutStyles,
   initialState_Checkout,
   checkoutValidationSchema,
 } from './checkoutHelpers';
-import { Formik, Form, useFormikContext } from 'formik';
+import { Formik, Form } from 'formik';
 import FinalMessage from './FinalMessage';
 import { useHistory } from 'react-router-dom';
 
@@ -65,7 +52,6 @@ function getStepContent(step, formik, myCart) {
 
 export default function Checkout() {
   const classes = checkoutStyles();
-  // const { values: formValues } = useFormikContext();
 
   const history = useHistory();
 

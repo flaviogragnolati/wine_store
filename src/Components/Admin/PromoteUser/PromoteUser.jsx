@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress, Container, Button } from "@material-ui/core";
-import { Formik, Form } from "formik";
-import FormField from "../../FormComponents/FormField";
-import { formatArrayToOption } from "../../utils/index";
-import { userStatusSelector, usersListSelector } from "../../../selectors/index";
-import { userPromote, sendEmail } from "../../../slices/userSlice";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { CircularProgress, Container, Button } from '@material-ui/core';
+import { Formik, Form } from 'formik';
+import FormField from '../../FormComponents/FormField';
+import { formatArrayToOption } from '../../utils/index';
+import {
+  userStatusSelector,
+  usersListSelector,
+} from '../../../selectors/index';
+import { userPromote, sendEmail } from '../../../slices/userSlice';
 
 function PromoteUser() {
   const dispatch = useDispatch();
@@ -15,24 +18,31 @@ function PromoteUser() {
 
   const handleSubmit = (values) => {
     let userId = values.usersToPromote;
-    let userToPromote = users.filter(u => u.id === userId)
+    let userToPromote = users.filter((u) => u.id === userId);
     dispatch(userPromote(userId));
-    dispatch(sendEmail({ name: userToPromote[0].firstName, email: userToPromote[0].email, type: 'Promote'}));
+    dispatch(
+      sendEmail({
+        name: userToPromote[0].firstName,
+        email: userToPromote[0].email,
+        type: 'Promote',
+      })
+    );
   };
 
   const initialValues = {
-    usersToPromote: "",
+    usersToPromote: '',
   };
 
   let content;
 
   useEffect(() => {
-    if (userStatus === "succeded") {
-        setUsersOption(formatArrayToOption(users, 'firstName'));
+    if (userStatus === 'succeded') {
+      setUsersOption(formatArrayToOption(users, 'firstName'));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (userStatus === "loading") {
+  if (userStatus === 'loading') {
     //* si loading renderizamos `Cargando...`
     content = (
       <>
@@ -40,7 +50,7 @@ function PromoteUser() {
         <CircularProgress />
       </>
     );
-  } else if (userStatus === "succeded") {
+  } else if (userStatus === 'succeded') {
     content = (
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {(formik) => (
