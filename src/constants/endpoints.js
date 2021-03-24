@@ -1,4 +1,4 @@
-const baseEndpoint = 'https://apicomm.herokuapp.com/';
+const baseEndpoint = 'https://wine-store-api.herokuapp.com/';
 
 export const productEndpoint = baseEndpoint + `products/`;
 
