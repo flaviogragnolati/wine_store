@@ -1,4 +1,4 @@
-const baseEndpoint = 'http://localhost:3000/';
+const baseEndpoint = 'https://apicomm.herokuapp.com/';
 
 export const productEndpoint = baseEndpoint + `products/`;
 
